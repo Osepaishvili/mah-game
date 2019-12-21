@@ -1,11 +1,11 @@
 export class Card {
     public value: number;
     public isFlipped: boolean;
-    public isMatched: boolean;
+    public cardState: string;
 
     constructor(value: number) {
         this.value = value;
         this.isFlipped = false;
-        this.isMatched = false;
+        this.cardState = '';
     }
 }

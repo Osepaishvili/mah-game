@@ -56,16 +56,20 @@ export class WrapperComponent implements OnInit {
       if (this.firstChosenCard.value !== card.value) {
         this.firstChosenCard.isFlipped = false;
         card.isFlipped = false;
+        card.cardState = '';
+        this.firstChosenCard.cardState = '';
       }
       else {
-        card.isMatched = true;
-        this.firstChosenCard.isMatched = true;
+        card.cardState = 'matched';
+        this.firstChosenCard.cardState = 'matched';
       }
       this.firstChosenCard = null;
       this.isStopCardSelecting = false;
     };
-
+    
     card.isFlipped = true;
+    card.cardState = 'selected';
+
     if (this.firstChosenCard) {
       this.isStopCardSelecting = true;
       setTimeout(checkIfFoundPair, 1000);
@@ -73,5 +77,6 @@ export class WrapperComponent implements OnInit {
       this.firstChosenCard = card;
     }
   }
+
 
 }

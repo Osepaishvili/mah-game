@@ -1,8 +1,8 @@
-<div class="card" 
-        [ngClass]="{'selected' : card.isFlipped , 'matched' : card.isMatched}" 
+<div class="card"
         (click)="handleCardFlip()"
+        [@changeShadow] = "card.cardState"
         >
     <div #cardFront class="card-front">
-        <span class="card-front--span" [ngClass]="{'hidden': card.isFlipped }">{{card.value}}</span>
+        <span class="card-front--span" [ngClass]="{'hidden': !card.isFlipped }">{{card.value}}</span>
     </div>
 </div>

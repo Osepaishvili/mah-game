@@ -7,11 +7,13 @@ import { Card } from '../_entities/card.model';
   styleUrls: ['./wrapper.component.scss']
 })
 export class WrapperComponent implements OnInit {
-  
+
   cards: Card[] = [];
+  isStopCardSelecting = false;
+  firstChosenCard: Card = null;
 
   constructor() { }
- ngOnInit() {
+  ngOnInit() {
     this.initCards();
   }
 
@@ -44,5 +46,32 @@ export class WrapperComponent implements OnInit {
     }
   }
 
+  onCardSelect(card) {
+    if (card.isFlipped || this.isStopCardSelecting) {
+      console.log('Cannot click!');
+      return;
+    }
+
+    const checkIfFoundPair = () => {
+      if (this.firstChosenCard.value !== card.value) {
+        this.firstChosenCard.isFlipped = false;
+        card.isFlipped = false;
+      }
+      else {
+        card.isMatched = true;
+        this.firstChosenCard.isMatched = true;
+      }
+      this.firstChosenCard = null;
+      this.isStopCardSelecting = false;
+    };
+
+    card.isFlipped = true;
+    if (this.firstChosenCard) {
+      this.isStopCardSelecting = true;
+      setTimeout(checkIfFoundPair, 1000);
+    } else {
+      this.firstChosenCard = card;
+    }
+  }
 
 }

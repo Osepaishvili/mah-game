@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Card } from '../_entities/card.model';
 
 @Component({
   selector: 'app-card',
@@ -6,41 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  
-  private arr = [];
+  @Input() card: Card;
   
   constructor() { }
 
   ngOnInit() {
-    this.initCards();
-  }
-
-  initCards() {
-    this.createArr(50);
-    this.shuffle(this.arr);
-  }
-
-  shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
-  }
-
-  isPrime(num: number) {
-    for (var i = 2; i < num; i++) {
-      if (num % i === 0) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  createArr(num: number) {
-    var arr = [2 ,2]
-    for (let i = 3; i < num; i++) {
-      if (this.isPrime(i)) {
-        this.arr.push(i);
-        this.arr.push(i);
-      }
-    }
+    
   }
 
 }

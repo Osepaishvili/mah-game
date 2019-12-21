@@ -1,1 +1,6 @@
-<div *ngFor="let item of arr">{{item}}</div>
+<div class="card"
+        >
+    <div #cardFront class="card-front">
+        <span class="card-front--span" [ngClass]="{'hidden': !card.isFlipped }">{{card.value}}</span>
+    </div>
+</div>
